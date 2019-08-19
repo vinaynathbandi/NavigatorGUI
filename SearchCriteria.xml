@@ -1,0 +1,30 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Testing Navigator Dashboard">
+  <test name="Add Dashboard reports">
+  <parameter name="sDriver" value="webdriver.chrome.driver"/>
+  <parameter name="sDriverpath" value="Drivers/chromedriver.exe"/>
+  <parameter name="URL" value="/navigator/#/login"/>
+  <parameter name="uname" value="Admin"/>
+  <parameter name="password" value="admin"/>
+  <parameter name="Dashboardname" value="Search Criteria Dashboard"/>
+  <parameter name="wgs" value="0"/>
+  <parameter name="Node" value="DESKTOP-E1JT2VR"/>
+  <parameter name="Queuemanager" value="MGR"/>
+  <parameter name="SearchCriteriaName" value="Search Queues"/>
+  <parameter name="SearchCriteriaData" value="Testing to add the new message into Queue"/>
+   
+     <classes>
+       <class name="ApodGUI.SearchCriteria">
+       
+          <methods>
+            <include name="Login"/>
+            <include name="AddDashboard"/>
+            <include name="AddSearchCriteriaCondition"/>
+            <include name="Logout"/>
+          </methods> 
+          
+       </class>
+     </classes>
+  </test>
+  </suite>

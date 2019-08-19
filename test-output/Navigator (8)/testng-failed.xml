@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Navigator (8)]">
+  <parameter name="Dashboardname" value="Schedule19595"/>
+  <parameter name="password" value="admin"/>
+  <parameter name="wgs" value="WGS10"/>
+  <parameter name="uname" value="Admin"/>
+  <parameter name="sDriver" value="webdriver.chrome.driver"/>
+  <parameter name="sDriverpath" value="Drivers/chromedriver.exe"/>
+  <parameter name="URL" value="/navigator/#/login"/>
+  <test name="Test Manager Viewlet">
+    <parameter name="Dashboardname" value="Schedule19595"/>
+    <parameter name="password" value="admin"/>
+    <parameter name="wgs" value="WGS10"/>
+    <parameter name="uname" value="Admin"/>
+    <parameter name="sDriver" value="webdriver.chrome.driver"/>
+    <parameter name="sDriverpath" value="Drivers/chromedriver.exe"/>
+    <parameter name="URL" value="/navigator/#/login"/>
+    <classes>
+      <class name="ApodGUI.ScheduleView19595">
+        <methods>
+          <include name="Login"/>
+          <include name="ExportAllMessages"/>
+          <include name="Logout"/>
+        </methods>
+      </class> <!-- ApodGUI.ScheduleView19595 -->
+    </classes>
+  </test> <!-- Test Manager Viewlet -->
+</suite> <!-- Failed suite [Navigator (8)] -->

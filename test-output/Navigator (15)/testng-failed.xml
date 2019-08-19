@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Navigator (15)]">
+  <parameter name="Dashboardname" value="EMS18790"/>
+  <parameter name="password" value="admin"/>
+  <parameter name="wgs" value="WGS10 - 1"/>
+  <parameter name="Channelname" value="EMS Channel"/>
+  <parameter name="uname" value="Admin"/>
+  <parameter name="sDriver" value="webdriver.chrome.driver"/>
+  <parameter name="sDriverpath" value="Drivers/chromedriver.exe"/>
+  <parameter name="URL" value="/navigator/#/login"/>
+  <test name="Test Manager Viewlet">
+    <parameter name="Dashboardname" value="EMS18790"/>
+    <parameter name="password" value="admin"/>
+    <parameter name="wgs" value="WGS10 - 1"/>
+    <parameter name="Channelname" value="EMS Channel"/>
+    <parameter name="uname" value="Admin"/>
+    <parameter name="sDriver" value="webdriver.chrome.driver"/>
+    <parameter name="sDriverpath" value="Drivers/chromedriver.exe"/>
+    <parameter name="URL" value="/navigator/#/login"/>
+    <classes>
+      <class name="ApodGUI.EMSChannels18790">
+        <methods>
+          <include name="Login"/>
+          <include name="EMSchannelscreation"/>
+          <include name="Logout"/>
+        </methods>
+      </class> <!-- ApodGUI.EMSChannels18790 -->
+    </classes>
+  </test> <!-- Test Manager Viewlet -->
+</suite> <!-- Failed suite [Navigator (15)] -->

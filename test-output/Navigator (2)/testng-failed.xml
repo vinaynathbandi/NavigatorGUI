@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Navigator (2)]">
+  <parameter name="Dashboardname" value="ExportMessage 19715"/>
+  <parameter name="password" value="admin"/>
+  <parameter name="wgs" value="WGS10"/>
+  <parameter name="uname" value="Admin"/>
+  <parameter name="sDriver" value="webdriver.chrome.driver"/>
+  <parameter name="sDriverpath" value="Drivers/chromedriver.exe"/>
+  <parameter name="InputData" value="Save messages using default user settings?"/>
+  <parameter name="URL" value="/navigator/#/login"/>
+  <test name="Test Manager Viewlet">
+    <parameter name="Dashboardname" value="ExportMessage 19715"/>
+    <parameter name="password" value="admin"/>
+    <parameter name="wgs" value="WGS10"/>
+    <parameter name="uname" value="Admin"/>
+    <parameter name="sDriver" value="webdriver.chrome.driver"/>
+    <parameter name="sDriverpath" value="Drivers/chromedriver.exe"/>
+    <parameter name="InputData" value="Save messages using default user settings?"/>
+    <parameter name="URL" value="/navigator/#/login"/>
+    <classes>
+      <class name="ApodGUI.ExportMessagesText19715">
+        <methods>
+          <include name="Login"/>
+          <include name="ExportAllMessages"/>
+          <include name="Logout"/>
+        </methods>
+      </class> <!-- ApodGUI.ExportMessagesText19715 -->
+    </classes>
+  </test> <!-- Test Manager Viewlet -->
+</suite> <!-- Failed suite [Navigator (2)] -->

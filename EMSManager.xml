@@ -1,0 +1,36 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Navigator">
+ <test name="Test EMS Manager Viewlet options">
+     <parameter name="sDriver" value="webdriver.chrome.driver"/>
+  <parameter name="sDriverpath" value="Drivers/chromedriver.exe"/>
+  <parameter name="URL" value="/navigator/#/login"/>
+    <parameter name="uname" value="Admin"/>
+    <parameter name="password" value="admin"/>
+    
+    <parameter name="Dashboardname" value="EMS Manager"/>
+    <parameter name="wgs" value="1"/>
+    <parameter name="Managername" value="EMS Manager"/>
+    <parameter name="WGSName" value="WGS10 - 1"/>
+      
+    <parameter name="FavoriteViewletName" value="EMS Manager Favorite Viewlet"/>
+   
+    <parameter name="SchemaName" value="EMSManager"/>    
+   
+  
+     <classes>
+      <class name="ApodGUI.EMSManagerViewlet">
+       
+       <methods>
+       
+        <include name="Login"/>
+        <include name="ShowObjectAttributes"/>   
+        <include name="AddToFavorites"/>
+        <include name="Logout"/> 
+        
+       </methods>
+       
+       </class>
+     </classes>
+ </test>
+</suite>

@@ -1,0 +1,54 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Navigator">
+ <test name="Test Channel Viewlet">
+  <parameter name="sDriver" value="webdriver.chrome.driver"/>
+  <parameter name="sDriverpath" value="Drivers/chromedriver.exe"/>
+  <parameter name="URL" value="/navigator/#/login"/>
+    <parameter name="uname" value="Admin"/>
+    <parameter name="password" value="admin"/>
+    <parameter name="Dashboardname" value="Channel Verification"/>
+    <parameter name="wgs" value="1"/>
+    <parameter name="ChannelName" value="Channel Viewlet"/>
+    <parameter name="WGSName" value="WGS10 - 1"/>
+    
+    <parameter name="FavoriteViewletName" value="Favorite for Channels"/>
+    <parameter name="Favwgs" value="1"/>
+    
+    <parameter name="schemaName" value="ChannelSchema"/>
+    <parameter name="Attributes" value="Channel Name,Channel Description,Channel Type,Transport Type,Connection Name,Local Address,Bytes Sent,Bytes Received,Messages,Maximum Message Length (bytes),Sequence Number Wrap,Disconnect Interval (sec.),Heartbeat Interval (sec.),Batch Heartbeat Interval (msec.),Batch Size,Batch Interval (msec.),Batch Data Limit,Keep Alive Interval (sec.),Data Conversion,Property Control Attribute,Use Dead Letter Queue,MCA Name,MCA Type,Send Exit,Send Exit Data,Receive Exit,Receive Exit Data,Security Exit,Security Exit Data,Message Exit,Message Exit Data,Mode Name,Transaction Program Name,User ID,Password,Short Retry Count,Short Retry Timer (sec.),Long Retry Count,Long Retry Timer (sec.),SSL Cipher Specification,SSL Peer Name,SSL Client Authentication,Header Compression,Message Compression,Channel Monitoring,Channel Statistics,Alteration Date,Last Updated,Last Event Time,Last Action,Status"/>
+    
+    <parameter name="ChannelDescription" value="Multiple channel Description"/>
+    <parameter name="ChannelConnectionName" value="Multiple channel connection"/>
+
+  
+     <classes>
+      <class name="ApodGUI.ChannelViewlet">
+       
+       <methods>
+       
+        <include name="Login"/>
+        <include name="ShowObjectAttributes"/> 
+        <include name="ShowChannelStatus"/> 
+       <!--  <include name="StartChannelFromCommands"/>
+        <include name="StopChannelFromCommands"/>
+        <include name="PingChannelFromCommands"/>
+        <include name="ResolveChannelFromCommands"/>
+        <include name="ResetChannelFromCommands"/>  -->
+        <include name="Properties"/>  
+        <include name="Events"/>
+        <include name="AddToFavorites"/>  
+        <include name="ComapareChannels"/>
+        <include name="ShowChannelStatusForMultiple"/> 
+        <!-- <include name="StartMultipleChannelsFromCommands"/>
+        <include name="StopMultipleChannelsFromCommands"/> -->
+        <include name="MultipleProperties"/> 
+        <include name="AddToFavoriteForMultipleChannels"/> 
+        <include name="Logout"/> 
+        
+       </methods>
+       
+       </class>
+     </classes>
+ </test>
+</suite>

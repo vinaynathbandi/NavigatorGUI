@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Navigator (11)]">
+  <parameter name="ConnectionName" value="localhost"/>
+  <parameter name="password" value="admin"/>
+  <parameter name="ChannelName" value="SYSTEM.DEF.SVRCONN"/>
+  <parameter name="uname" value="Admin"/>
+  <parameter name="sDriver" value="webdriver.chrome.driver"/>
+  <parameter name="sDriverpath" value="Drivers/chromedriver.exe"/>
+  <parameter name="RemoteQueueManagerName" value="QMGR_NAME"/>
+  <parameter name="URL" value="/navigator/#/login"/>
+  <parameter name="ConnectionInstanceName" value="REMOTE_QMGRS"/>
+  <parameter name="CommandQueueName" value="SYSTEM.ADMIN.COMMAND.QUEUE"/>
+  <parameter name="NewConnectionName" value="192.168.1.210"/>
+  <test name="Testing WorkGroup server viewlet options">
+    <parameter name="ConnectionName" value="localhost"/>
+    <parameter name="password" value="admin"/>
+    <parameter name="ChannelName" value="SYSTEM.DEF.SVRCONN"/>
+    <parameter name="uname" value="Admin"/>
+    <parameter name="sDriver" value="webdriver.chrome.driver"/>
+    <parameter name="sDriverpath" value="Drivers/chromedriver.exe"/>
+    <parameter name="RemoteQueueManagerName" value="QMGR_NAME"/>
+    <parameter name="URL" value="/navigator/#/login"/>
+    <parameter name="ConnectionInstanceName" value="REMOTE_QMGRS"/>
+    <parameter name="CommandQueueName" value="SYSTEM.ADMIN.COMMAND.QUEUE"/>
+    <parameter name="NewConnectionName" value="192.168.1.210"/>
+    <classes>
+      <class name="ApodGUI.AddRemoteQueueManager19564">
+        <methods>
+          <include name="Login"/>
+          <include name="AddRemoteQueueManager"/>
+          <include name="Logout"/>
+        </methods>
+      </class> <!-- ApodGUI.AddRemoteQueueManager19564 -->
+    </classes>
+  </test> <!-- Testing WorkGroup server viewlet options -->
+</suite> <!-- Failed suite [Navigator (11)] -->

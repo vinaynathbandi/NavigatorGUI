@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Navigator (19)]">
+  <parameter name="Dashboardname" value="Manager19678"/>
+  <parameter name="password" value="admin"/>
+  <parameter name="uname" value="Admin"/>
+  <parameter name="Managername" value="Create Manager"/>
+  <parameter name="sDriver" value="webdriver.chrome.driver"/>
+  <parameter name="sDriverpath" value="Drivers/chromedriver.exe"/>
+  <parameter name="PortNo" value="4020"/>
+  <parameter name="DownloadPath" value="F:\Navigator Exported Messages\Export Query From MQSC Console"/>
+  <parameter name="URL" value="/navigator/#/login"/>
+  <test name="Test Manager Viewlet options">
+    <parameter name="Dashboardname" value="Manager19678"/>
+    <parameter name="password" value="admin"/>
+    <parameter name="uname" value="Admin"/>
+    <parameter name="Managername" value="Create Manager"/>
+    <parameter name="sDriver" value="webdriver.chrome.driver"/>
+    <parameter name="sDriverpath" value="Drivers/chromedriver.exe"/>
+    <parameter name="PortNo" value="4020"/>
+    <parameter name="DownloadPath" value="F:\Navigator Exported Messages\Export Query From MQSC Console"/>
+    <parameter name="URL" value="/navigator/#/login"/>
+    <classes>
+      <class name="ApodGUI.MessageLengthField19678">
+        <methods>
+          <include name="Login"/>
+          <include name="MessageProperties"/>
+          <include name="Logout"/>
+        </methods>
+      </class> <!-- ApodGUI.MessageLengthField19678 -->
+    </classes>
+  </test> <!-- Test Manager Viewlet options -->
+</suite> <!-- Failed suite [Navigator (19)] -->

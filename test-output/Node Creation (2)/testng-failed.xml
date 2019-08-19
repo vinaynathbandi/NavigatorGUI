@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Node Creation (2)]">
+  <parameter name="ViewletName" value="AUTOMATION QUEUE VIEWLET"/>
+  <parameter name="password" value="admin"/>
+  <parameter name="WGS" value="MQM - 0"/>
+  <parameter name="uname" value="Admin"/>
+  <parameter name="sDriver" value="webdriver.chrome.driver"/>
+  <parameter name="sDriverpath" value="Drivers/chromedriver.exe"/>
+  <parameter name="Node" value="KITE"/>
+  <parameter name="LimitOffsetValue" value="1000"/>
+  <parameter name="URL" value="/navigator/#/login"/>
+  <parameter name="DashBoard" value="AUTOMATION_TEST FOR DATALIMITOFFSET TEST"/>
+  <test name="Add Dashboard reports">
+    <parameter name="ViewletName" value="AUTOMATION QUEUE VIEWLET"/>
+    <parameter name="password" value="admin"/>
+    <parameter name="WGS" value="MQM - 0"/>
+    <parameter name="uname" value="Admin"/>
+    <parameter name="sDriver" value="webdriver.chrome.driver"/>
+    <parameter name="sDriverpath" value="Drivers/chromedriver.exe"/>
+    <parameter name="Node" value="KITE"/>
+    <parameter name="LimitOffsetValue" value="1000"/>
+    <parameter name="URL" value="/navigator/#/login"/>
+    <parameter name="DashBoard" value="AUTOMATION_TEST FOR DATALIMITOFFSET TEST"/>
+    <classes>
+      <class name="ApodGUI.DataLimitOffSet_19344">
+        <methods>
+          <include name="Login"/>
+          <include name="creation"/>
+          <include name="setDataLimitoffset"/>
+        </methods>
+      </class> <!-- ApodGUI.DataLimitOffSet_19344 -->
+    </classes>
+  </test> <!-- Add Dashboard reports -->
+</suite> <!-- Failed suite [Node Creation (2)] -->

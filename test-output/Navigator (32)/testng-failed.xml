@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Navigator (32)]">
+  <parameter name="password" value="admin"/>
+  <parameter name="uname" value="Admin"/>
+  <parameter name="sDriver" value="webdriver.ie.driver"/>
+  <parameter name="sDriverpath" value="Drivers/chromedriver.exe"/>
+  <parameter name="URL" value="/navigator/#/login"/>
+  <test name="Test Manager Viewlet">
+    <parameter name="password" value="admin"/>
+    <parameter name="uname" value="Admin"/>
+    <parameter name="sDriver" value="webdriver.ie.driver"/>
+    <parameter name="sDriverpath" value="Drivers/chromedriver.exe"/>
+    <parameter name="URL" value="/navigator/#/login"/>
+    <classes>
+      <class name="ApodGUI.RenewToken19411">
+        <methods>
+          <include name="Login"/>
+          <include name="RenewTokenPopup"/>
+          <include name="Logout"/>
+        </methods>
+      </class> <!-- ApodGUI.RenewToken19411 -->
+    </classes>
+  </test> <!-- Test Manager Viewlet -->
+  <test name="Test Manager Viewlet(failed)">
+    <parameter name="password" value="admin"/>
+    <parameter name="uname" value="Admin"/>
+    <parameter name="sDriver" value="webdriver.ie.driver"/>
+    <parameter name="sDriverpath" value="Drivers/chromedriver.exe"/>
+    <parameter name="URL" value="/navigator/#/login"/>
+    <classes>
+      <class name="ApodGUI.RenewToken19411">
+        <methods>
+          <include name="Logout"/>
+          <include name="RenewTokenPopup" invocation-numbers="0"/>
+        </methods>
+      </class> <!-- ApodGUI.RenewToken19411 -->
+    </classes>
+  </test> <!-- Test Manager Viewlet(failed) -->
+</suite> <!-- Failed suite [Navigator (32)] -->

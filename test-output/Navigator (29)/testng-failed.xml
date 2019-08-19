@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Navigator (29)]">
+  <parameter name="Dashboardname" value="ChannelWGS10"/>
+  <parameter name="password" value="admin"/>
+  <parameter name="wgs" value="WGS10 - 2"/>
+  <parameter name="Channelname" value="Channel"/>
+  <parameter name="Description" value="Test the description"/>
+  <parameter name="uname" value="Admin"/>
+  <parameter name="sDriver" value="webdriver.chrome.driver"/>
+  <parameter name="sDriverpath" value="Drivers/chromedriver.exe"/>
+  <parameter name="URL" value="/navigator/#/login"/>
+  <test name="ChannelProperties">
+    <parameter name="Dashboardname" value="ChannelWGS10"/>
+    <parameter name="password" value="admin"/>
+    <parameter name="wgs" value="WGS10 - 2"/>
+    <parameter name="Channelname" value="Channel"/>
+    <parameter name="Description" value="Test the description"/>
+    <parameter name="uname" value="Admin"/>
+    <parameter name="sDriver" value="webdriver.chrome.driver"/>
+    <parameter name="sDriverpath" value="Drivers/chromedriver.exe"/>
+    <parameter name="URL" value="/navigator/#/login"/>
+    <classes>
+      <class name="ApodGUI.ChannelProperties19729">
+        <methods>
+          <include name="Login"/>
+          <include name="CahnnelProperties"/>
+          <include name="Logout"/>
+        </methods>
+      </class> <!-- ApodGUI.ChannelProperties19729 -->
+    </classes>
+  </test> <!-- ChannelProperties -->
+</suite> <!-- Failed suite [Navigator (29)] -->

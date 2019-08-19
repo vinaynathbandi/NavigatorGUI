@@ -1,0 +1,70 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Navigator">
+ <test name="Test Process Viewlet">
+  <parameter name="sDriver" value="webdriver.chrome.driver"/>
+  <parameter name="sDriverpath" value="Drivers/chromedriver.exe"/>
+  <parameter name="URL" value="/navigator/#/login"/>
+    <parameter name="uname" value="Admin"/>
+    <parameter name="password" value="admin"/>
+    <parameter name="Dashboardname" value="ProcessViewlet Verification"/>
+    <parameter name="wgs" value="1"/>
+    
+    <parameter name="Processname" value="Process Viewlet"/>
+    <parameter name="WGSName" value="WGS10 - 1"/>
+    
+    <parameter name="NewProcessName" value="Test.New.process121"/>
+    <parameter name="ProcessDescription" value="Test Process"/>
+    <parameter name="ApplicationId" value="Test12"/>
+    
+    <parameter name="schemaName" value="ProcessSchema"/>
+    
+    <parameter name="CopyObjectName" value=".Copy"/>
+    
+    <parameter name="RenameProcess" value="Test.New.process121.Rename"/>
+    
+    <parameter name="ProcessNameFromOptions" value="Test.New.process.Options11"/>
+    <parameter name="ProcessDescriptionFromOptions" value="Description For Process"/>
+    <parameter name="ApplicationIdFromOptions" value="Process123"/>
+    
+    <parameter name="FavoriteViewletName" value="Favorite for Process"/>
+    <parameter name="Favwgs" value="1"/>
+    
+    <parameter name="CopyObjectNameForMultiple" value="SYSTEM.DEFAULT.MULTIPLE"/>
+    
+    <parameter name="MultipleDescription" value="Test Description option for Multiple"/>
+    <parameter name="AppID" value="App123"/>
+     
+     <parameter name="Attributes" value="Process Name,Process Description,Application ID,Application Type,Environment Data,User Data"/>     
+   
+  
+     <classes>
+      <class name="ApodGUI.ProcessViewlet">
+       
+       <methods>
+       
+        <include name="Login"/>
+        <include name="AddProcessViewlet"/>
+        <include name="CreateProcessFromPlusIcon"/>   
+        <include name="ShowObjectAttributesForProcess"/> 
+        <!-- <include name="CopyAsFromCommands"/>
+        <include name="RenameFromCommands"/>
+        <include name="DeleteFromCommands"/> --> 
+        <include name="CreateProcess"/> 
+        <include name="Properties"/> 
+        <include name="ProcessEvents"/>  
+        <include name="AddToFavoriteViewlet"/> 
+        <include name="CompareProcessNames"/>  
+        <!-- <include name="CopyAsFromCommandsForMultipleProcess"/>
+        <include name="RenameFromCommandsForMultipleProcess"/>
+        <include name="DeleteFromCommandsForMultipleProcess"/> -->
+        <include name="MultipleProperties"/>
+        <include name="AddToFavoriteForMultipleProcess"/>
+        <include name="Logout"/> 
+        
+       </methods>
+       
+       </class>
+     </classes>
+ </test>
+</suite>

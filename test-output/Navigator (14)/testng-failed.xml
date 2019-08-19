@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Navigator (14)]">
+  <parameter name="Dashboardname" value="ManagerOptions19787"/>
+  <parameter name="password" value="admin"/>
+  <parameter name="wgs" value="WGS10 - 1"/>
+  <parameter name="uname" value="Admin"/>
+  <parameter name="Managername" value="Manager"/>
+  <parameter name="sDriver" value="webdriver.chrome.driver"/>
+  <parameter name="Start" value="Start all WMQ objects"/>
+  <parameter name="Stop" value="Stop all WMQ objects"/>
+  <parameter name="sDriverpath" value="Drivers/chromedriver.exe"/>
+  <parameter name="ManagerOptions" value="Show Object Attributes,Show Topology,Create Queue Manager,Commands,Properties...,MQSC,Discover now,Delete,Delete from database,Events...,Add to favorites..."/>
+  <parameter name="URL" value="/navigator/#/login"/>
+  <parameter name="commands" value="Commands"/>
+  <test name="Test Manager Viewlet">
+    <parameter name="Dashboardname" value="ManagerOptions19787"/>
+    <parameter name="password" value="admin"/>
+    <parameter name="wgs" value="WGS10 - 1"/>
+    <parameter name="uname" value="Admin"/>
+    <parameter name="Managername" value="Manager"/>
+    <parameter name="sDriver" value="webdriver.chrome.driver"/>
+    <parameter name="Start" value="Start all WMQ objects"/>
+    <parameter name="Stop" value="Stop all WMQ objects"/>
+    <parameter name="sDriverpath" value="Drivers/chromedriver.exe"/>
+    <parameter name="ManagerOptions" value="Show Object Attributes,Show Topology,Create Queue Manager,Commands,Properties...,MQSC,Discover now,Delete,Delete from database,Events...,Add to favorites..."/>
+    <parameter name="URL" value="/navigator/#/login"/>
+    <parameter name="commands" value="Commands"/>
+    <classes>
+      <class name="ApodGUI.ManagerOptions19787">
+        <methods>
+          <include name="Login"/>
+          <include name="ManagerOptions"/>
+          <include name="Logout"/>
+        </methods>
+      </class> <!-- ApodGUI.ManagerOptions19787 -->
+    </classes>
+  </test> <!-- Test Manager Viewlet -->
+</suite> <!-- Failed suite [Navigator (14)] -->

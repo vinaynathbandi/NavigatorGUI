@@ -1,0 +1,565 @@
+[TestNG] Running:
+  E:\NavigatorAutomation\Navigator\Manager19787.xml
+
+Method Started: Test Manager Viewlet
+Test Started for method: Login
+No Test Case ID
+Method Success: Login
+Test Started for method: ManagerOptions
+Show Object Attributes
+Show Topology
+Create Queue Manager
+Commands
+Properties...
+MQSC
+Discover now
+Delete
+Delete from database
+Events...
+Add to favorites...
+-------------------------------
+Pass
+Pass
+Pass
+Pass
+Pass
+Pass
+Pass
+Pass
+Pass
+Pass
+Pass
+Test Case ID = 23
+Context = 1
+Method Success: ManagerOptions
+Test Started for method: Logout
+No Test Case ID
+Method Success: Logout
+
+===============================================
+Navigator
+Total tests run: 3, Failures: 0, Skips: 0
+===============================================
+
+[TestNG] Running:
+  E:\NavigatorAutomation\Navigator\EMS18790.xml
+
+Method Started: Test Manager Viewlet
+Test Started for method: Login
+No Test Case ID
+Method Success: Login
+Test Started for method: EMSchannelscreation
+EMS channels are present
+Test Case ID = 19
+Context = 1
+Method Success: EMSchannelscreation
+Test Started for method: Logout
+No Test Case ID
+Method Success: Logout
+
+===============================================
+Navigator (0)
+Total tests run: 3, Failures: 0, Skips: 0
+===============================================
+
+[TestNG] Running:
+  E:\NavigatorAutomation\Navigator\EMSStart19262.xml
+
+Method Started: Test Manager Viewlet
+Test Started for method: Login
+No Test Case ID
+Method Success: Login
+Test Started for method: EMSoptions
+1
+EMS objects does not have the Start and Stop options
+Test Case ID = 20
+Context = 1
+Method Success: EMSoptions
+Test Started for method: Logout
+No Test Case ID
+Method Success: Logout
+
+===============================================
+Navigator (1)
+Total tests run: 3, Failures: 0, Skips: 0
+===============================================
+
+[TestNG] Running:
+  E:\NavigatorAutomation\Navigator\Export19715.xml
+
+Method Started: Test Manager Viewlet
+Test Started for method: Login
+No Test Case ID
+Method Success: Login
+Test Started for method: ExportAllMessages
+Command settings page data is displaying correctly in MMF
+Command settings page data is displaying correctly in TXT
+Test Case ID = 21
+Context = 1
+Method Success: ExportAllMessages
+Test Started for method: Logout
+No Test Case ID
+Method Success: Logout
+
+===============================================
+Navigator (2)
+Total tests run: 3, Failures: 0, Skips: 0
+===============================================
+
+[TestNG] Running:
+  E:\NavigatorAutomation\Navigator\Message19733.xml
+
+Method Started: Test Manager Viewlet
+Test Started for method: Login
+Testcase id not defined
+Method Failed: Login
+Test Started for method: PutNewMessageIntoQueue
+Test Case ID = 27
+Context = 4
+Method Success: PutNewMessageIntoQueue
+Test Started for method: Logout
+Dashboards are not present
+Testcase id not defined
+Method Failed: Logout
+
+===============================================
+Navigator (3)
+Total tests run: 3, Failures: 2, Skips: 0
+===============================================
+
+[TestNG] Running:
+  E:\NavigatorAutomation\Navigator\MessageLength19678.xml
+
+Method Started: Test Manager Viewlet options
+Test Started for method: Login
+No Test Case ID
+Method Success: Login
+Test Started for method: MessageProperties
+false
+Ok button is disable
+Test Case ID = 24
+Context = 1
+Method Success: MessageProperties
+Test Started for method: Logout
+Dashboards are not present
+No Test Case ID
+Method Success: Logout
+
+===============================================
+Navigator (4)
+Total tests run: 3, Failures: 0, Skips: 0
+===============================================
+
+[TestNG] Running:
+  E:\NavigatorAutomation\Navigator\NodeDropdown18508.xml
+
+Method Started: Test Manager Viewlet
+Test Started for method: Login
+No Test Case ID
+Method Success: Login
+Test Started for method: NodeDrodownlist
+Node dropdown list working fine
+Test Case ID = 25
+Context = 1
+Method Success: NodeDrodownlist
+Test Started for method: Logout
+Dashboards are not present
+No Test Case ID
+Method Success: Logout
+
+===============================================
+Navigator (5)
+Total tests run: 3, Failures: 0, Skips: 0
+===============================================
+
+[TestNG] Running:
+  E:\NavigatorAutomation\Navigator\NodeInsteadOfManager20002.xml
+
+Method Started: Test Manager Viewlet
+Test Started for method: Login
+No Test Case ID
+Method Success: Login
+Test Started for method: Node
+Node viewlet is created in the work space
+Test Case ID = 26
+Context = 1
+Method Success: Node
+Test Started for method: Logout
+Dashboards are not present
+No Test Case ID
+Method Success: Logout
+
+===============================================
+Navigator (6)
+Total tests run: 3, Failures: 0, Skips: 0
+===============================================
+
+[TestNG] Running:
+  E:\NavigatorAutomation\Navigator\StartListeners18772.xml
+
+Method Started: Test Manager Viewlet
+Test Started for method: Login
+No Test Case ID
+Method Success: Login
+Test Started for method: AddListenerViewlet
+Listener Viewlet is created
+Test Case ID = 30
+Context = 1
+Method Success: AddListenerViewlet
+Test Started for method: CommandOptions
+Start and stop commands are present for the listener
+No Test Case ID
+Method Success: CommandOptions
+Test Started for method: Logout
+No Test Case ID
+Method Success: Logout
+
+===============================================
+Navigator (7)
+Total tests run: 4, Failures: 0, Skips: 0
+===============================================
+
+[TestNG] Running:
+  E:\NavigatorAutomation\Navigator\ScheduleView19595.xml
+
+Method Started: Test Manager Viewlet
+Test Started for method: Login
+No Test Case ID
+Method Success: Login
+Test Started for method: ExportAllMessages
+NASTEL.EVENT.QUEUE
+Schedular list popup success
+Test Case ID = 29
+Context = 1
+Method Success: ExportAllMessages
+Test Started for method: Logout
+No Test Case ID
+Method Success: Logout
+
+===============================================
+Navigator (8)
+Total tests run: 3, Failures: 0, Skips: 0
+===============================================
+
+[TestNG] Running:
+  E:\NavigatorAutomation\Navigator\DatePicker19570.xml
+
+Method Started: Test Manager Viewlet
+Test Started for method: Login
+No Test Case ID
+Method Success: Login
+Test Started for method: DatePickerPresent
+Mo
+Date Picker is present
+Test Case ID = 18
+Context = 1
+Method Success: DatePickerPresent
+Test Started for method: Logout
+No Test Case ID
+Method Success: Logout
+Method Started: Test in IE
+Test Started for method: Login
+No Test Case ID
+Method Success: Login
+Test Started for method: DatePickerPresent
+Mo
+Date Picker is present
+Test Case ID = 18
+Context = 1
+Method Success: DatePickerPresent
+Test Started for method: Logout
+No Test Case ID
+Method Success: Logout
+
+===============================================
+Navigator (9)
+Total tests run: 6, Failures: 0, Skips: 0
+===============================================
+
+[TestNG] Running:
+  E:\NavigatorAutomation\Navigator\Autologin19862.xml
+
+Method Started: Test Manager Viewlet
+Test Started for method: Login
+No Test Case ID
+Method Success: Login
+Test Started for method: LoginUser
+User able to login the navigator
+Test Case ID = 15
+Context = 1
+Method Success: LoginUser
+Test Started for method: Logout
+No Test Case ID
+Method Success: Logout
+
+===============================================
+Navigator (10)
+Total tests run: 3, Failures: 0, Skips: 0
+===============================================
+
+[TestNG] Running:
+  E:\NavigatorAutomation\Navigator\AddRemoteManager19564.xml
+
+Method Started: Testing WorkGroup server viewlet options
+Test Started for method: Login
+No Test Case ID
+Method Success: Login
+Test Started for method: AddRemoteQueueManager
+Remote Queue Manager is added successfully
+Test Case ID = 13
+Context = 1
+Method Success: AddRemoteQueueManager
+Test Started for method: Logout
+Dashboards are not present
+No Test Case ID
+Method Success: Logout
+
+===============================================
+Navigator (11)
+Total tests run: 3, Failures: 0, Skips: 0
+===============================================
+
+[TestNG] Running:
+  E:\NavigatorAutomation\Navigator\ChannelProperties19729.xml
+
+Method Started: ChannelProperties
+Test Started for method: Login
+No Test Case ID
+Method Success: Login
+Test Started for method: CahnnelProperties
+Channel properties are not executed properly
+Method Failed: CahnnelProperties
+Test Started for method: Logout
+No Test Case ID
+Method Success: Logout
+
+===============================================
+Navigator (12)
+Total tests run: 3, Failures: 1, Skips: 0
+===============================================
+
+[TestNG] Running:
+  E:\NavigatorAutomation\Navigator\AttributeFilter18725.xml
+
+Method Started: Test Manager Viewlet
+Test Started for method: Login
+No Test Case ID
+Method Success: Login
+Test Started for method: Attributefiletr
+Filter name already exists
+Duplicate is not allowed, So Issue has been resolved
+Test Case ID = 14
+Context = 1
+Method Success: Attributefiletr
+Test Started for method: Logout
+Dashboards are not present
+Testcase id not defined
+Method Failed: Logout
+
+===============================================
+Navigator (13)
+Total tests run: 3, Failures: 1, Skips: 0
+===============================================
+
+[TestNG] Running:
+  E:\NavigatorAutomation\Navigator\DataLimitOffSet_19344.xml
+
+Method Started: Add Dashboard reports
+Test Started for method: Login
+No Test Case ID
+Method Success: Login
+Test Started for method: creation
+No Test Case ID
+Method Success: creation
+Test Started for method: setDataLimitoffset
+1000
+Test Passed
+Test Case ID = 17
+Context = 1
+Method Success: setDataLimitoffset
+
+===============================================
+Node Creation
+Total tests run: 3, Failures: 0, Skips: 0
+===============================================
+
+[TestNG] Running:
+  E:\NavigatorAutomation\Navigator\ListenerAttributes_Edit_18419.xml
+
+Method Started: Add Dashboard reports
+Test Started for method: Login
+No Test Case ID
+Method Success: Login
+Test Started for method: creation
+Listener existed
+Listener existed
+No Test Case ID
+Method Success: creation
+Test Started for method: EditProperties
+TEST EDIT DESCRIPTION
+TEST EDIT DESCRIPTION
+Able to edit Description
+localhost112
+Able To Edit IPADDRESS
+localhost112
+Able To Edit PORT
+Test Case ID = 31
+Context = 1
+Method Success: EditProperties
+
+===============================================
+Node Creation (0)
+Total tests run: 3, Failures: 0, Skips: 0
+===============================================
+
+[TestNG] Running:
+  E:\NavigatorAutomation\Navigator\ListeningPort_19426.xml
+
+Method Started: Add Dashboard reports
+Test Started for method: Login
+5010
+Test Passed
+Test Case ID = 32
+Context = 1
+Method Success: Login
+
+===============================================
+Node Creation (1)
+Total tests run: 1, Failures: 0, Skips: 0
+===============================================
+
+[TestNG] Running:
+  E:\NavigatorAutomation\Navigator\DefaultAudit_20008.xml
+
+Method Started: Audit Profile
+Test Started for method: Login
+No Test Case ID
+Method Success: Login
+Test Started for method: AuditData
+^(MQ|EX)CMD_(INQUIRE.*|LOCATE_OBJECT)
+Data Displaying as Expected
+Test Case ID = 33
+Context = 1
+Method Success: AuditData
+Test Started for method: Logout
+No Test Case ID
+Method Success: Logout
+
+===============================================
+ApodWSM
+Total tests run: 3, Failures: 0, Skips: 0
+===============================================
+
+[TestNG] Running:
+  E:\NavigatorAutomation\Navigator\EMSAdmin_19996.xml
+
+Method Started: EMS Role
+Test Started for method: Login
+No Test Case ID
+Method Success: Login
+Test Started for method: EMSRole
+EMS Admin
+EMS admin role Option is not present
+Method Failed: EMSRole
+Test Started for method: Logout
+No Test Case ID
+Method Success: Logout
+
+===============================================
+ApodWSM (0)
+Total tests run: 3, Failures: 1, Skips: 0
+===============================================
+
+[TestNG] Running:
+  E:\NavigatorAutomation\Navigator\ManagerUnderSGM_20012.xml
+
+Method Started: Manager Name
+Test Started for method: Login
+No Test Case ID
+Method Success: Login
+Test Started for method: Manager
+Manager Name
+Manager Name option is present
+Test Case ID = 35
+Context = 1
+Method Success: Manager
+Test Started for method: Logout
+No Test Case ID
+Method Success: Logout
+
+===============================================
+ApodWSM (1)
+Total tests run: 3, Failures: 0, Skips: 0
+===============================================
+
+[TestNG] Running:
+  E:\NavigatorAutomation\Navigator\NavigatorFeatures_20031.xml
+
+Method Started: Navigator feature
+Test Started for method: Login
+url: http://localhost:8081/apodwsm/index.jsp
+No Test Case ID
+Method Success: Login
+Test Started for method: Navigator
+Navigator Features
+navigator Features option is present
+Test Case ID = 36
+Context = 1
+Method Success: Navigator
+Test Started for method: Logout
+No Test Case ID
+Method Success: Logout
+
+===============================================
+ApodWSM (2)
+Total tests run: 3, Failures: 0, Skips: 0
+===============================================
+
+[TestNG] Running:
+  E:\NavigatorAutomation\Navigator\Manager19787.xml
+
+Method Started: Test Manager Viewlet
+Test Started for method: Login
+No Test Case ID
+Method Success: Login
+Test Started for method: ManagerOptions
+Show Object Attributes
+Show Topology
+Create Queue Manager
+Commands
+Properties...
+MQSC
+Discover now
+Delete
+Delete from database
+Events...
+Add to favorites...
+-------------------------------
+Pass
+Pass
+Pass
+Pass
+Pass
+Pass
+Pass
+Pass
+Pass
+Pass
+Pass
+Test Case ID = 23
+Context = 1
+Method Success: ManagerOptions
+Test Started for method: Logout
+No Test Case ID
+Method Success: Logout
+
+===============================================
+Navigator (14)
+Total tests run: 3, Failures: 0, Skips: 0
+===============================================
+
+[TestNG] Running:
+  E:\NavigatorAutomation\Navigator\EMS18790.xml
+
+Method Started: Test Manager Viewlet
+Test Started for method: Login

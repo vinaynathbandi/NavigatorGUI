@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [ApodWSM (3)]">
+  <parameter name="password" value="admin"/>
+  <parameter name="uname" value="Admin"/>
+  <parameter name="sDriver" value="webdriver.chrome.driver"/>
+  <parameter name="sDriverpath" value="Drivers/chromedriver.exe"/>
+  <parameter name="URL" value="/apodwsm/index.jsp"/>
+  <parameter name="Auidt" value="^(MQ|EX)CMD_(INQUIRE.*|LOCATE_OBJECT)"/>
+  <test name="Audit Profile">
+    <parameter name="password" value="admin"/>
+    <parameter name="uname" value="Admin"/>
+    <parameter name="sDriver" value="webdriver.chrome.driver"/>
+    <parameter name="sDriverpath" value="Drivers/chromedriver.exe"/>
+    <parameter name="URL" value="/apodwsm/index.jsp"/>
+    <parameter name="Auidt" value="^(MQ|EX)CMD_(INQUIRE.*|LOCATE_OBJECT)"/>
+    <classes>
+      <class name="ApodGUI.DefaultAuditProfile_20008">
+        <methods>
+          <include name="Login"/>
+          <include name="AuditData"/>
+          <include name="Logout"/>
+        </methods>
+      </class> <!-- ApodGUI.DefaultAuditProfile_20008 -->
+    </classes>
+  </test> <!-- Audit Profile -->
+</suite> <!-- Failed suite [ApodWSM (3)] -->
