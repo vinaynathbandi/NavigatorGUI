@@ -26,65 +26,48 @@ import org.testng.annotations.Test;
 import testrail.Settings;
 import testrail.TestClass;
 import testrail.TestRail;
+import testrail.TestRailAPI;
 
 @Listeners(TestClass.class)
 public class RouteViewlet {
-static WebDriver driver;
+	
+	static WebDriver driver;
+	static String WGS_INDEX;
+	static String Screenshotpath;
+	static String DownloadPath;
+	static String WGSName;
+	static String UploadFilepath;
+	static String EMS_WGS_INDEX;
+	static String EMS_WGSNAME;
+	static String SelectTopicName;
+	static String DeleteDurableName;
 
-static String IPAddress;
-static String HostName;
-static String PortNo;
-static String WGSPassword;
-static String uname;
-static String password;
-static String Favwgs;
-static String URL;
-static String WGSName;
-String Screenshotpath;
-String DWGS;
-String Dnode;
-String NodeName;
-String Node;
-static String DownloadPath;
-String Queuemanager;
-static String wgs;
-static String QueueName;
-static String LocalQueue;
-static String ManagerName;
-static String DeleteBridgeName;
+	
+	@BeforeTest
+	public void beforeTest() throws Exception {
+		System.out.println("BeforeTest");
+		Settings.read();
+		
+		WGS_INDEX =Settings.getWGS_INDEX();
+		Screenshotpath =Settings.getScreenshotPath();
+		DownloadPath =Settings.getDownloadPath();
+		WGSName =Settings.getWGSNAME();
+		UploadFilepath =Settings.getUploadFilepath();
+		EMS_WGS_INDEX =Settings.getEMS_WGS_INDEX();
+		EMS_WGSNAME =Settings.getEMS_WGSNAME();
+		SelectTopicName = Settings.getSelectTopicName(); 
+		DeleteDurableName =Settings.getDeleteDurableName();
+	}
 
-@BeforeTest
-public void beforeTest() throws Exception {
-	System.out.println("BeforeTest");
-	testrail.Settings.read();
-	IPAddress = Settings.getIPAddress();
-	HostName = Settings.getWGS_HostName();
-	PortNo = Settings.getWGS_PortNo();
-	WGSPassword = Settings.getWGS_Password();
-
-	URL = Settings.getSettingURL();
-	uname = Settings.getNav_Username();
-	password = Settings.getNav_Password();
-	WGSName = Settings.getS_WGSName();
-
-	Screenshotpath = Settings.getScreenshotPath();
-	DWGS = Settings.getWGS_HostName();
-	Dnode = Settings.getDnode();
-	NodeName = Settings.getEMS_NodeName();
-	DownloadPath = Settings.getDownloadPath();
-	Node = Settings.getEMS_NodeName();
-	Queuemanager = Settings.getQueuemanager();
-	wgs = Settings.getWGS_INDEX();
-	QueueName = Settings.getQueueName();
-	LocalQueue = Settings.getLocalQueue();
-	ManagerName = Settings.getManagerName();
-	DeleteBridgeName = Settings.getDeleteBridgeName();
-}
 	
 	@Parameters({"sDriver", "sDriverpath", "Dashboardname"})
 	@Test
 	public static void Login(String sDriver, String sDriverpath, String Dashboardname) throws Exception
 	{
+		Settings.read();
+		String URL = Settings.getSettingURL();
+		String uname=Settings.getNav_Username();
+		String password=Settings.getNav_Password();
 	
 		if(sDriver.equalsIgnoreCase("webdriver.chrome.driver"))
 		{
@@ -126,7 +109,7 @@ public void beforeTest() throws Exception {
 		//Work group server selection
 		Select dd=new Select(driver.findElement(By.cssSelector("select[name=\"wgsKey\"]")));
 		Thread.sleep(2000);
-		dd.selectByIndex(Integer.parseInt(wgs));
+		dd.selectByIndex(Integer.parseInt(EMS_WGS_INDEX));
 		
 		/*//Selection of Node
 		driver.findElement(By.cssSelector(".field-queuem-input")).click();
@@ -144,7 +127,7 @@ public void beforeTest() throws Exception {
 	@Test(priority=1)
 	@TestRail(testCaseId=202)
     @Parameters({"Routename"})
-	public static void AddRouteViewlet(String Routename, String WGSName, ITestContext context) throws InterruptedException
+	public static void AddRouteViewlet(String Routename,  ITestContext context) throws InterruptedException
 	{
 		//Click on Viewlet
 		driver.findElement(By.cssSelector("button.g-button-blue.button-add")).click();
@@ -395,10 +378,10 @@ public void beforeTest() throws Exception {
 		driver.findElement(By.xpath("//app-console-tabs/div/div/ul/li/div/div[2]/i")).click();     
 	}
 	
-	@Parameters({"FavoriteViewletName", "Favwgs" })
+	@Parameters({"FavoriteViewletName"})
 	@TestRail(testCaseId=208)
 	@Test(priority=7)
-	public static void AddToFavoriteViewlet(String FavoriteViewletName, int Favwgs, ITestContext context) throws InterruptedException
+	public static void AddToFavoriteViewlet(String FavoriteViewletName, ITestContext context) throws InterruptedException
 	{
     	//Store the Route Name into string
 		String RouteName=driver.findElement(By.xpath("//div[3]/app-viewlet/div/ngx-datatable/div/datatable-body/datatable-selection/datatable-scroller/datatable-row-wrapper/datatable-body-row/div[2]/datatable-body-cell[4]/div/span")).getText();
@@ -413,7 +396,7 @@ public void beforeTest() throws Exception {
 		driver.findElement(By.name("viewlet-name")).sendKeys(FavoriteViewletName);
 		
 		Select wgsdropdown=new Select(driver.findElement(By.name("wgs")));
-		wgsdropdown.selectByIndex(Favwgs);
+		wgsdropdown.selectByVisibleText(EMS_WGSNAME);
 		
 		//Submit
 		driver.findElement(By.cssSelector("div.g-block-bottom-buttons.buttons-block > button.g-button-blue")).click();
@@ -578,6 +561,7 @@ public void beforeTest() throws Exception {
 		//Give Connection url
 		driver.findElement(By.id("connectionURL")).clear();
 		driver.findElement(By.id("connectionURL")).sendKeys(ConnectionURLName);
+		System.out.println("Input url: " +ConnectionURLName);
 		
 		//close the properties page
 		driver.findElement(By.cssSelector(".btn-primary")).click();
@@ -590,6 +574,7 @@ public void beforeTest() throws Exception {
 		
 		//Save the Connection URL value into string
 		String FirstRoutedata=driver.findElement(By.id("connectionURL")).getAttribute("value");
+		System.out.println("First Url: " +FirstRoutedata);
 		
 		//close the properties page
 		driver.findElement(By.xpath("//div[3]/button")).click();
@@ -602,6 +587,7 @@ public void beforeTest() throws Exception {
 		
 		//Save the Connection URL value into string
 		String SecondRoutedata=driver.findElement(By.id("connectionURL")).getAttribute("value");
+		System.out.println("second Url: " +SecondRoutedata);
 		
 		//close the properties page
 		driver.findElement(By.xpath("//div[3]/button")).click();
@@ -667,10 +653,10 @@ public void beforeTest() throws Exception {
 		Thread.sleep(1000);
 	}
 	
-	@Parameters({"RouteNameFromIcon", "ConnectionURLName"})
+	@Parameters({"RouteNameFromIcon", "ConnectionURLNameField"})
 	@TestRail(testCaseId=213)
 	@Test(priority=12)
-	public void AddRouteFromPlusIcon(String RouteNameFromIcon, String ConnectionURLName, ITestContext context) throws InterruptedException
+	public void AddRouteFromPlusIcon(String RouteNameFromIcon, String ConnectionURLNameField, ITestContext context) throws InterruptedException
 	{
 		//Click on + icon
 		driver.findElement(By.xpath("//img[@title='Add EMS Route']")).click();
@@ -695,7 +681,7 @@ public void beforeTest() throws Exception {
 		driver.findElement(By.id("name")).sendKeys(RouteNameFromIcon);
 		
 		//Connection URL
-		driver.findElement(By.id("connectionURL")).sendKeys(ConnectionURLName);
+		driver.findElement(By.id("connectionURL")).sendKeys(ConnectionURLNameField);
 		
 		//Close the window
 		driver.findElement(By.xpath("//div[2]/div/div/div/button")).click();
@@ -750,6 +736,8 @@ public void beforeTest() throws Exception {
 
 		final String dir = System.getProperty("user.dir");
 		String screenshotPath;
+		
+		System.out.println("result getStatus: " + result.getStatus());
 		// System.out.println("dir: " + dir);
 		if (!result.getMethod().getMethodName().contains("Logout")) {
 			if (ITestResult.FAILURE == result.getStatus()) {
@@ -775,6 +763,27 @@ public void beforeTest() throws Exception {
 			// To add it in the report
 			Reporter.log("<br/>");
 			Reporter.log(path);
+			try {
+				//Update attachment to testrail server
+				int testCaseID=0;
+				//int status=(int) result.getTestContext().getAttribute("Status");
+				//String comment=(String) result.getTestContext().getAttribute("Comment");
+				  if (result.getMethod().getConstructorOrMethod().getMethod().isAnnotationPresent(TestRail.class))
+					{
+					TestRail testCase = result.getMethod().getConstructorOrMethod().getMethod().getAnnotation(TestRail.class);
+					// Get the TestCase ID for TestRail
+					testCaseID = testCase.testCaseId();
+					
+					
+					
+					TestRailAPI api=new TestRailAPI();
+					api.Getresults(testCaseID, result.getMethod().getMethodName());
+					
+					}
+				}catch (Exception e) {
+					// TODO: handle exception
+					//e.printStackTrace();
+				}
 		}
 
 	}

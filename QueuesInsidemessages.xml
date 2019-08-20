@@ -12,7 +12,7 @@
   <parameter name="wgs" value="1"/>
   <parameter name="QueueName" value="Local Queue"/>
   <parameter name="WGSName" value="WGS10 - 1"/>
-  <parameter name="Node" value="DESKTOP-E1JT2VR"/>
+ 
   <parameter name="Queuemanager" value="MGR"/>
   <parameter name="MessageData" value="Testing to add the new message into Queue"/>
   

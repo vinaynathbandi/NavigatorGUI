@@ -1,10 +1,14 @@
 package ApodGUI;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -14,6 +18,10 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.ITestContext;
+import org.testng.ITestResult;
+import org.testng.Reporter;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -21,19 +29,61 @@ import org.testng.annotations.Test;
 import testrail.Settings;
 import testrail.TestClass;
 import testrail.TestRail;
+import testrail.TestRailAPI;
 
 @Listeners(TestClass.class)
 public class ManagerViewlet 
 {
-static WebDriver driver;
+	static WebDriver driver;
+	static String IPAddress;
+	static String HostName;
+	static String PortNo;
+	static String WGSPassword;
+	static String Node_hostname;
+	static String NodeNameFromIcon;
+	static String HostNameFromIcon;
+	static String IPAddressFromIcon;
+	static String QueueManagerName;
+	static String Node_Hostname;
+	static String DefaultTransmissionQueue;
+	static String WGS_INDEX;
+	static String Screenshotpath;
+	static String DownloadPath;
+	static String M_QueueManagerName;
+	static String WGSName;
+
+	@BeforeTest
+	public void beforeTest() throws Exception {
+		System.out.println("BeforeTest");
+		Settings.read();
+		IPAddress = Settings.getIPAddress();
+		HostName = Settings.getWGS_HostName();
+		PortNo = Settings.getWGS_PortNo();
+		WGSPassword = Settings.getWGS_Password();
+		Node_hostname = Settings.getNode_Hostname();
+		NodeNameFromIcon = Settings.getNode_NameFromIcon();
+		HostNameFromIcon = Settings.getHostNameFromIcon();
+		IPAddressFromIcon = Settings.getIPAddressFromIcon();
+		QueueManagerName = Settings.getQueueManagerName();
+		Node_Hostname =Settings.getNode_Hostname();
+		DefaultTransmissionQueue =Settings.getDefaultTransmissionQueue();
+		WGS_INDEX =Settings.getWGS_INDEX();
+		Screenshotpath =Settings.getScreenshotPath();
+		DownloadPath =Settings.getDownloadPath();
+		M_QueueManagerName =Settings.getM_QueueManagerName();
+		WGSName =Settings.getWGSNAME();
+	}
+
 	
-	@Parameters({"sDriver", "sDriverpath", "URL", "uname", "password", "DownloadPath", "PortNo", "Dashboardname", "Managername", "WGSName"})
+	@Parameters({"sDriver", "sDriverpath", "Dashboardname", "Managername"})
 	@Test
-	public void Login(String sDriver, String sDriverpath, String URL, String uname, String password, String DownloadPath, String PortNo, String Dashboardname, String Managername, String WGSName) throws Exception
+	public void Login(String sDriver, String sDriverpath, String Dashboardname, String Managername) throws Exception
 	{
 		Settings.read();
-		String urlstr=Settings.getSettingURL();
-		URL= urlstr+URL;
+		String URL = Settings.getSettingURL();
+		String uname=Settings.getNav_Username();
+		String password=Settings.getNav_Password();
+		
 		//Selecting the browser
 		if(sDriver.equalsIgnoreCase("webdriver.chrome.driver"))
 		{
@@ -101,10 +151,10 @@ static WebDriver driver;
 		
 	}
 	
-	@Parameters({"QueueManagerName", "DefaultTransmissionQueue", "Description", "WGSName"})
+	@Parameters({"Description"})
 	@TestRail(testCaseId = 47)
 	@Test(priority=1)
-	public static void AddNewManagerFromIcon(String QueueManagerName, String DefaultTransmissionQueue, String Description, String WGSName,ITestContext context) throws InterruptedException
+	public static void AddNewManagerFromIcon(String Description, ITestContext context) throws InterruptedException
 	{
 		//Click on + icon
 		driver.findElement(By.xpath("//img[@title='Add Queue Manager']")).click();
@@ -127,7 +177,7 @@ static WebDriver driver;
 		Thread.sleep(2000);
 		
 		//Queue Details
-		driver.findElement(By.xpath("//div[2]/div/input")).sendKeys(QueueManagerName);
+		driver.findElement(By.xpath("//div[2]/div/input")).sendKeys(M_QueueManagerName);
 		driver.findElement(By.xpath("//app-qmgrcreatestep1/div/div[4]/div/input")).sendKeys(DefaultTransmissionQueue);
 		driver.findElement(By.xpath("//textarea")).sendKeys(Description);
 		
@@ -176,7 +226,7 @@ static WebDriver driver;
 		
 		
 		//Verification condition 
-		if(viewlet1.contains(QueueManagerName))
+		if(viewlet1.contains(M_QueueManagerName))
 		{
 			System.out.println("Queue Manager is successfully added");
 			context.setAttribute("Status", 1);
@@ -597,10 +647,10 @@ static WebDriver driver;
          
 	}
 	
-	@Parameters({"WGSName", "FavoriteViewletName"})
+	@Parameters({"FavoriteViewletName"})
 	@TestRail(testCaseId = 60)
 	@Test(priority=14)
-	public static void AddToFavorites(String WGSName, String FavoriteViewletName, ITestContext context) throws InterruptedException
+	public static void AddToFavorites(String FavoriteViewletName, ITestContext context) throws InterruptedException
 	{
 		//Create favorite Viewlet
 		driver.findElement(By.xpath("//button[2]")).click();
@@ -1046,6 +1096,85 @@ static WebDriver driver;
 		//Logout option
 		driver.findElement(By.cssSelector(".fa-power-off")).click();
 		driver.close();
+	}
+	
+	@AfterMethod
+	public void tearDown(ITestResult result) {
+
+		final String dir = System.getProperty("user.dir");
+		String screenshotPath;
+		//System.out.println("dir: " + dir);
+		if (!result.getMethod().getMethodName().contains("Logout")) {
+			if (ITestResult.FAILURE == result.getStatus()) {
+				this.capturescreen(driver, result.getMethod().getMethodName(), "FAILURE");
+				Reporter.setCurrentTestResult(result);
+
+				Reporter.log("<br/>Failed to execute method: " + result.getMethod().getMethodName() + "<br/>");
+				// Attach screenshot to report log
+				screenshotPath = dir + "/" + Screenshotpath + "/ScreenshotsFailure/"
+						+ result.getMethod().getMethodName() + ".png";
+
+			} else {
+				this.capturescreen(driver, result.getMethod().getMethodName(), "SUCCESS");
+				Reporter.setCurrentTestResult(result);
+
+				// Attach screenshot to report log
+				screenshotPath = dir + "/" + Screenshotpath + "/ScreenshotsSuccess/"
+						+ result.getMethod().getMethodName() + ".png";
+
+			}
+
+			String path = "<img src=\" " + screenshotPath + "\" alt=\"\"\"/\" />";
+			// To add it in the report
+			Reporter.log("<br/>");
+			Reporter.log(path);
+			
+			try {
+				//Update attachment to testrail server
+				int testCaseID=0;
+				//int status=(int) result.getTestContext().getAttribute("Status");
+				//String comment=(String) result.getTestContext().getAttribute("Comment");
+				  if (result.getMethod().getConstructorOrMethod().getMethod().isAnnotationPresent(TestRail.class))
+					{
+					TestRail testCase = result.getMethod().getConstructorOrMethod().getMethod().getAnnotation(TestRail.class);
+					// Get the TestCase ID for TestRail
+					testCaseID = testCase.testCaseId();
+					
+					
+					
+					TestRailAPI api=new TestRailAPI();
+					api.Getresults(testCaseID, result.getMethod().getMethodName());
+					
+					}
+				}catch (Exception e) {
+					// TODO: handle exception
+					//e.printStackTrace();
+				}
+		}
+
+	}
+
+	public void capturescreen(WebDriver driver, String screenShotName, String status) {
+		try {
+			
+			File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+
+			if (status.equals("FAILURE")) {
+				FileUtils.copyFile(scrFile,
+						new File(Screenshotpath + "/ScreenshotsFailure/" + screenShotName + ".png"));
+				Reporter.log(Screenshotpath + "/ScreenshotsFailure/" + screenShotName + ".png");
+			} else if (status.equals("SUCCESS")) {
+				FileUtils.copyFile(scrFile,
+						new File(Screenshotpath + "./ScreenshotsSuccess/" + screenShotName + ".png"));
+
+			}
+
+			System.out.println("Printing screen shot taken for className " + screenShotName);
+
+		} catch (Exception e) {
+			System.out.println("Exception while taking screenshot " + e.getMessage());
+		}
+
 	}
 
 }

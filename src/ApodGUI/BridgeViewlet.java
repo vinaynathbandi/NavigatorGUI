@@ -29,67 +29,49 @@ import org.testng.annotations.Test;
 import testrail.Settings;
 import testrail.TestClass;
 import testrail.TestRail;
+import testrail.TestRailAPI;
 
 @Listeners(TestClass.class)
 public class BridgeViewlet {
-static WebDriver driver;
-static String IPAddress;
-static String HostName;
-static String PortNo;
-static String WGSPassword;
-static String uname;
-static String password;
-static String Favwgs;
-static String URL;
-static String WGSName;
-String Screenshotpath;
-String DWGS;
-String Dnode;
-String NodeName;
-String Node;
-static String DownloadPath;
-String Queuemanager;
-static String wgs;
-static String QueueName;
-static String LocalQueue;
-static String ManagerName;
-static String DeleteBridgeName;
-
-@BeforeTest
-public void beforeTest() throws Exception {
-	System.out.println("BeforeTest");
-	testrail.Settings.read();
-	IPAddress = Settings.getIPAddress();
-	HostName = Settings.getWGS_HostName();
-	PortNo = Settings.getWGS_PortNo();
-	WGSPassword = Settings.getWGS_Password();
-
-	URL = Settings.getSettingURL();
-	uname = Settings.getNav_Username();
-	password = Settings.getNav_Password();
-	WGSName = Settings.getS_WGSName();
-
-	Screenshotpath = Settings.getScreenshotPath();
-	DWGS = Settings.getWGS_HostName();
-	Dnode = Settings.getDnode();
-	NodeName = Settings.getEMS_NodeName();
-	DownloadPath = Settings.getDownloadPath();
-	Node = Settings.getEMS_NodeName();
-	Queuemanager = Settings.getQueuemanager();
-	wgs = Settings.getWGS_INDEX();
-	QueueName = Settings.getQueueName();
-	LocalQueue = Settings.getLocalQueue();
-	ManagerName = Settings.getManagerName();
-	DeleteBridgeName=Settings.getDeleteBridgeName();
-}
+	
+	static WebDriver driver;
+	static String WGS_INDEX;
+	static String Screenshotpath;
+	static String DownloadPath;
+	static String WGSName;
+	static String UploadFilepath;
+	static String EMS_WGS_INDEX;
+	static String EMS_WGSNAME;
+	static String SourceName;
+	static String TargetName;
+	static String DeleteBridgeName;
+	
+	@BeforeTest
+	public void beforeTest() throws Exception {
+		System.out.println("BeforeTest");
+		Settings.read();
+		
+		WGS_INDEX =Settings.getWGS_INDEX();
+		Screenshotpath =Settings.getScreenshotPath();
+		DownloadPath =Settings.getDownloadPath();
+		WGSName =Settings.getWGSNAME();
+		UploadFilepath =Settings.getUploadFilepath();
+		EMS_WGS_INDEX =Settings.getEMS_WGS_INDEX();
+		EMS_WGSNAME =Settings.getEMS_WGSNAME();
+		SourceName =Settings.getSourceName();
+		TargetName =Settings.getTargetName();
+		DeleteBridgeName =Settings.getDeleteBridgeName();
+	}
 	
 	@Parameters({"sDriver", "sDriverpath", "Dashboardname"})
 	@Test
-	public static void Login(String sDriver, String sDriverpath, String URL, String uname, String password, String Dashboardname, int wgs) throws Exception
+	public static void Login(String sDriver, String sDriverpath, String Dashboardname) throws Exception
 	{
 		Settings.read();
-		String urlstr=Settings.getSettingURL();
-		URL= urlstr+URL;
+		String URL = Settings.getSettingURL();
+		String uname=Settings.getNav_Username();
+		String password=Settings.getNav_Password();
+		
 		if(sDriver.equalsIgnoreCase("webdriver.chrome.driver"))
 		{
 		System.setProperty(sDriver, sDriverpath);
@@ -130,7 +112,7 @@ public void beforeTest() throws Exception {
 		//Work group server selection
 		Select dd=new Select(driver.findElement(By.cssSelector("select[name=\"wgsKey\"]")));
 		Thread.sleep(2000);
-		dd.selectByIndex(wgs);
+		dd.selectByIndex(Integer.parseInt(EMS_WGS_INDEX));
 		
 		/*//Selection of Node
 		driver.findElement(By.cssSelector(".field-queuem-input")).click();
@@ -184,10 +166,10 @@ public void beforeTest() throws Exception {
 			
     }
 	 
-	@Parameters({"SourceTypevalue", "SourceName", "TargetType", "TargetName"})
+	@Parameters({"SourceTypevalue", "TargetType"})
 	@TestRail(testCaseId=220)
 	@Test(priority=2)
-	public void AddBridgeFromPlusIcon(String SourceTypevalue, String SourceName, String TargetType, String TargetName, ITestContext context) throws InterruptedException
+	public void AddBridgeFromPlusIcon(String SourceTypevalue, String TargetType,  ITestContext context) throws InterruptedException
 	{
 		//Click on + icon
 		driver.findElement(By.xpath("//img[@title='Add EMS Bridge']")).click();
@@ -333,7 +315,7 @@ public void beforeTest() throws Exception {
 	
 	@TestRail(testCaseId=222)
 	@Test(priority=12)
-	public void DeleteCommand(ITestContext context) throws InterruptedException
+	public void DeleteCommand( ITestContext context) throws InterruptedException
 	{
 		//Search the bridge name
 		driver.findElement(By.xpath("(//input[@type='text'])[3]")).clear();
@@ -488,10 +470,10 @@ public void beforeTest() throws Exception {
 		driver.findElement(By.xpath("//app-console-tabs/div/div/ul/li/div/div[2]/i")).click();        
 	}
 	
-	@Parameters({"FavoriteViewletName", "Favwgs" })
+	@Parameters({"FavoriteViewletName"})
 	@TestRail(testCaseId=225)
 	@Test(priority=6)
-	public static void AddToFavoriteViewlet(String FavoriteViewletName, int Favwgs, ITestContext context) throws InterruptedException
+	public static void AddToFavoriteViewlet(String FavoriteViewletName, ITestContext context) throws InterruptedException
 	{
     	//Store the Bridge Name into string
 		String BridgeName=driver.findElement(By.xpath("//div[3]/app-viewlet/div/ngx-datatable/div/datatable-body/datatable-selection/datatable-scroller/datatable-row-wrapper/datatable-body-row/div[2]/datatable-body-cell[4]/div/span")).getText();
@@ -506,7 +488,7 @@ public void beforeTest() throws Exception {
 		driver.findElement(By.name("viewlet-name")).sendKeys(FavoriteViewletName);
 		
 		Select wgsdropdown=new Select(driver.findElement(By.name("wgs")));
-		wgsdropdown.selectByIndex(Favwgs);
+		wgsdropdown.selectByVisibleText(EMS_WGSNAME);
 		
 		//Submit
 		driver.findElement(By.cssSelector("div.g-block-bottom-buttons.buttons-block > button.g-button-blue")).click();
@@ -826,6 +808,28 @@ public void beforeTest() throws Exception {
 			// To add it in the report
 			Reporter.log("<br/>");
 			Reporter.log(path);
+			
+			try {
+				//Update attachment to testrail server
+				int testCaseID=0;
+				//int status=(int) result.getTestContext().getAttribute("Status");
+				//String comment=(String) result.getTestContext().getAttribute("Comment");
+				  if (result.getMethod().getConstructorOrMethod().getMethod().isAnnotationPresent(TestRail.class))
+					{
+					TestRail testCase = result.getMethod().getConstructorOrMethod().getMethod().getAnnotation(TestRail.class);
+					// Get the TestCase ID for TestRail
+					testCaseID = testCase.testCaseId();
+					
+					
+					
+					TestRailAPI api=new TestRailAPI();
+					api.Getresults(testCaseID, result.getMethod().getMethodName());
+					
+					}
+				}catch (Exception e) {
+					// TODO: handle exception
+					//e.printStackTrace();
+				}
 		}
 
 	}
@@ -833,7 +837,6 @@ public void beforeTest() throws Exception {
 	public void capturescreen(WebDriver driver, String screenShotName, String status) {
 		try {
 			
-
 			File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 
 			if (status.equals("FAILURE")) {
@@ -851,7 +854,6 @@ public void beforeTest() throws Exception {
 		} catch (Exception e) {
 			System.out.println("Exception while taking screenshot " + e.getMessage());
 		}
-
 	}
 	
 }

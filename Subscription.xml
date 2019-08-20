@@ -13,7 +13,7 @@
     <parameter name="SubscriptionAttributes" value="Attributes"/>
     <parameter name="schemaName" value="SubscriptionSchema"/>
     
-    <parameter name="AddSubscriptionName" value="SYSTEM.ADD.NEW.SUBSCRIPTION11"/>
+    <parameter name="AddSubscriptionName" value="SYSTEM.ADD.NEW.SUBSCRIPTION121"/>
     <parameter name="DestinationTopicName" value="SYSTEM.ADMIN.TOPIC"/>
     <parameter name="TopicStringData" value="Unique"/>
     <parameter name="DWGS" value="WGS10"/>

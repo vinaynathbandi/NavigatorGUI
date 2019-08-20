@@ -29,66 +29,45 @@ import org.testng.annotations.Test;
 import testrail.Settings;
 import testrail.TestClass;
 import testrail.TestRail;
+import testrail.TestRailAPI;
 
 @Listeners(TestClass.class)
 public class TopicViewlet 
 {
-static WebDriver driver;
-
-static String IPAddress;
-static String HostName;
-static String PortNo;
-static String WGSPassword;
-static String uname;
-static String password;
-static String Favwgs;
-static String URL;
-static String WGSName;
-String Screenshotpath;
-String DWGS;
-String Dnode;
-String NodeName;
-String Node;
-static String DownloadPath;
-String Queuemanager;
-static String wgs;
-static String QueueName;
-static String LocalQueue;
-static String ManagerName;
-static String DeleteBridgeName;
-
-@BeforeTest
-public void beforeTest() throws Exception {
-	System.out.println("BeforeTest");
-	testrail.Settings.read();
-	IPAddress = Settings.getIPAddress();
-	HostName = Settings.getWGS_HostName();
-	PortNo = Settings.getWGS_PortNo();
-	WGSPassword = Settings.getWGS_Password();
-
-	URL = Settings.getSettingURL();
-	uname = Settings.getNav_Username();
-	password = Settings.getNav_Password();
-	WGSName = Settings.getS_WGSName();
-
-	Screenshotpath = Settings.getScreenshotPath();
-	DWGS = Settings.getWGS_HostName();
-	Dnode = Settings.getDnode();
-	NodeName = Settings.getEMS_NodeName();
-	DownloadPath = Settings.getDownloadPath();
-	Node = Settings.getEMS_NodeName();
-	Queuemanager = Settings.getQueuemanager();
-	wgs = Settings.getWGS_INDEX();
-	QueueName = Settings.getQueueName();
-	LocalQueue = Settings.getLocalQueue();
-	ManagerName = Settings.getManagerName();
-	DeleteBridgeName=Settings.getDeleteBridgeName();
-}
+	static WebDriver driver;
+	static String WGS_INDEX;
+	static String Screenshotpath;
+	static String DownloadPath;
+	static String WGSName;
+	static String UploadFilepath;
+	static String DWGS;
+	static String Dnode;
+	static String DestinationManager;
+	static String DestinationQueue;
+	
+	@BeforeTest
+	public void beforeTest() throws Exception {
+		System.out.println("BeforeTest");
+		Settings.read();
+		WGS_INDEX =Settings.getWGS_INDEX();
+		Screenshotpath =Settings.getScreenshotPath();
+		DownloadPath =Settings.getDownloadPath();
+		WGSName =Settings.getWGSNAME();
+		UploadFilepath =Settings.getUploadFilepath();
+		DWGS =Settings.getDWGS();
+		Dnode =Settings.getDnode();
+		DestinationManager =Settings.getDestinationManager();
+		DestinationQueue =Settings.getDestinationQueue();
+	}
 	
 	@Parameters({"sDriver", "sDriverpath", "Dashboardname"})
 	@Test
 	public static void Login(String sDriver, String sDriverpath, String Dashboardname) throws Exception
 	{
+		Settings.read();
+		String URL = Settings.getSettingURL();
+		String uname=Settings.getNav_Username();
+		String password=Settings.getNav_Password();
 		
 		if(sDriver.equalsIgnoreCase("webdriver.chrome.driver"))
 		{
@@ -130,7 +109,7 @@ public void beforeTest() throws Exception {
 		//Work group server selection
 		Select dd=new Select(driver.findElement(By.cssSelector("select[name=\"wgsKey\"]")));
 		Thread.sleep(2000);
-		dd.selectByIndex(Integer.parseInt(wgs));
+		dd.selectByIndex(Integer.parseInt(WGS_INDEX));
 		
 		/*//Selection of Node
 		driver.findElement(By.cssSelector(".field-queuem-input")).click();
@@ -390,12 +369,12 @@ public void beforeTest() throws Exception {
     	Thread.sleep(1000);
 	}
 	
-	@Parameters({"MessageData", "PropertyName", "PropertyValue", "AddSubscriptionName",  "DestinationManager", "DestinationQueue", "DestinationTopicName"})
+	@Parameters({"MessageData", "PropertyName", "PropertyValue", "AddSubscriptionName", "DestinationTopicName"})
 	@TestRail(testCaseId=137)
 	@Test(priority=6)
-	public void PublishFromCommands(String MessageData, String PropertyName, String PropertyValue, String AddSubscriptionName, String DestinationManager, String DestinationQueue, String DestinationTopicName, ITestContext context) throws InterruptedException
+	public void PublishFromCommands(String MessageData, String PropertyName, String PropertyValue, String AddSubscriptionName, String DestinationTopicName, ITestContext context) throws InterruptedException
 	{
-		this.Addsubscription(AddSubscriptionName, DestinationManager, DestinationQueue, DestinationTopicName);
+		this.Addsubscription(AddSubscriptionName, DestinationTopicName);
 		
 		//Show Empty queues
     	driver.findElement(By.xpath("//i[3]")).click();
@@ -583,10 +562,10 @@ public void beforeTest() throws Exception {
 		
 	}
 	
-	@Parameters({"FavoriteViewletName", "Favwgs"})
+	@Parameters({"FavoriteViewletName"})
 	@TestRail(testCaseId=140)
 	@Test(priority=9)
-	public static void AddToFavoriteViewlet(String FavoriteViewletName, int Favwgs, ITestContext context) throws InterruptedException
+	public static void AddToFavoriteViewlet(String FavoriteViewletName, ITestContext context) throws InterruptedException
 	{
 		//Store Topic name into string
 		String TopicName=driver.findElement(By.xpath("//div[3]/app-viewlet/div/ngx-datatable/div/datatable-body/datatable-selection/datatable-scroller/datatable-row-wrapper/datatable-body-row/div[2]/datatable-body-cell[4]/div/span")).getText();
@@ -601,7 +580,7 @@ public void beforeTest() throws Exception {
 		driver.findElement(By.name("viewlet-name")).sendKeys(FavoriteViewletName);
 		
 		Select wgsdropdown=new Select(driver.findElement(By.name("wgs")));
-		wgsdropdown.selectByIndex(Favwgs);
+		wgsdropdown.selectByVisibleText(WGSName);
 		
 		//Submit
 		driver.findElement(By.cssSelector("div.g-block-bottom-buttons.buttons-block > button.g-button-blue")).click();
@@ -810,12 +789,12 @@ public void beforeTest() throws Exception {
     	driver.findElement(By.xpath("(//input[@type='text'])[3]")).clear();*/
 	}
 	
-	@Parameters({"AddSubscriptionNameforMultiple", "MessageDataForMultiple", "PropertyNameForMultiple", "PropertyValueForMultiple", "DestinationManager", "DestinationQueue", "DestinationTopicName"})
+	@Parameters({"AddSubscriptionNameforMultiple", "MessageDataForMultiple", "PropertyNameForMultiple", "PropertyValueForMultiple", "DestinationTopicName"})
 	@TestRail(testCaseId=144)
 	@Test(priority=13)
-	public void PublishFromCommandsForMultipleTopics(String AddSubscriptionNameforMultiple, String MessageDataForMultiple, String PropertyNameForMultiple, String PropertyValueForMultiple,  String DestinationManager, String DestinationQueue, String DestinationTopicName, ITestContext context) throws InterruptedException
+	public void PublishFromCommandsForMultipleTopics(String AddSubscriptionNameforMultiple, String MessageDataForMultiple, String PropertyNameForMultiple, String PropertyValueForMultiple, String DestinationTopicName, ITestContext context) throws InterruptedException
 	{
-		this.AddsubscriptionForMultiple(AddSubscriptionNameforMultiple,  DestinationManager, DestinationQueue, DestinationTopicName);
+		this.AddsubscriptionForMultiple(AddSubscriptionNameforMultiple, DestinationTopicName);
 		
 		//Show Empty queues
     	driver.findElement(By.xpath("//i[3]")).click();
@@ -1113,8 +1092,8 @@ public void beforeTest() throws Exception {
 	
 	//Create Subscription Viewlet and Add Subscription
 	
-	@Parameters({"AddSubscriptionName", "DestinationManager", "DestinationQueue", "DestinationTopicName"})
-	public void Addsubscription(String AddSubscriptionName, String DestinationManager, String DestinationQueue, String DestinationTopicName) throws InterruptedException
+	@Parameters({"AddSubscriptionName", "DestinationTopicName"})
+	public void Addsubscription(String AddSubscriptionName, String DestinationTopicName) throws InterruptedException
 	{
 		//Click on Viewlet
 		driver.findElement(By.cssSelector("button.g-button-blue.button-add")).click();
@@ -1128,7 +1107,7 @@ public void beforeTest() throws Exception {
 		//Work group server selection
 		Select dd=new Select(driver.findElement(By.cssSelector("select[name=\"wgsKey\"]")));
 		Thread.sleep(2000);
-		dd.selectByVisibleText("WGS10 - 1");
+		dd.selectByVisibleText(WGSName);
 		
 	    //Click on Save changes button
 		driver.findElement(By.cssSelector(".btn-primary")).click();
@@ -1196,7 +1175,7 @@ public void beforeTest() throws Exception {
 				System.out.println("Radio button text:" + Node.get(i).getText());
 				System.out.println("Radio button id:" + Node.get(i).getAttribute("id"));
 				String s=Node.get(i).getText();
-				if(s.equals(NodeName))
+				if(s.equals(Dnode))
 				{
 					String id=Node.get(i).getAttribute("id");
 					driver.findElement(By.id(id)).click();
@@ -1263,8 +1242,8 @@ public void beforeTest() throws Exception {
 	}
 	
 	
-	@Parameters({"AddSubscriptionNameforMultiple",  "DestinationManager", "DestinationQueue", "DestinationTopicName"})
-	public void AddsubscriptionForMultiple(String AddSubscriptionNameforMultiple, String DestinationManager, String DestinationQueue, String DestinationTopicName) throws InterruptedException
+	@Parameters({"AddSubscriptionNameforMultiple", "DestinationTopicName"})
+	public void AddsubscriptionForMultiple(String AddSubscriptionNameforMultiple, String DestinationTopicName) throws InterruptedException
 	{		
 		//click on check box and choose create subscription
 		driver.findElement(By.xpath("/html/body/app-root/div/app-main-page/div/app-tab/div/div/div[4]/app-viewlet/div/ngx-datatable/div/datatable-body/datatable-selection/datatable-scroller/datatable-row-wrapper[1]/datatable-body-row/div[2]/datatable-body-cell[1]/div/input")).click();
@@ -1326,7 +1305,7 @@ public void beforeTest() throws Exception {
 				//System.out.println("Radio button text:" + Node.get(i).getText());
 				System.out.println("Radio button id:" + Node.get(i).getAttribute("id"));
 				String s=Node.get(i).getText();
-				if(s.equals(NodeName))
+				if(s.equals(Dnode))
 				{
 					String id=Node.get(i).getAttribute("id");
 					driver.findElement(By.id(id)).click();
@@ -1389,9 +1368,7 @@ public void beforeTest() throws Exception {
 		//Click on OK button
 		driver.findElement(By.cssSelector(".btn-primary")).click();
     	Thread.sleep(3000);
-		
 	}
-	
 	
 	@AfterMethod
 	public void tearDown(ITestResult result) {
@@ -1423,6 +1400,28 @@ public void beforeTest() throws Exception {
 			// To add it in the report
 			Reporter.log("<br/>");
 			Reporter.log(path);
+			
+			try {
+				//Update attachment to testrail server
+				int testCaseID=0;
+				//int status=(int) result.getTestContext().getAttribute("Status");
+				//String comment=(String) result.getTestContext().getAttribute("Comment");
+				  if (result.getMethod().getConstructorOrMethod().getMethod().isAnnotationPresent(TestRail.class))
+					{
+					TestRail testCase = result.getMethod().getConstructorOrMethod().getMethod().getAnnotation(TestRail.class);
+					// Get the TestCase ID for TestRail
+					testCaseID = testCase.testCaseId();
+					
+					
+					
+					TestRailAPI api=new TestRailAPI();
+					api.Getresults(testCaseID, result.getMethod().getMethodName());
+					
+					}
+				}catch (Exception e) {
+					// TODO: handle exception
+					//e.printStackTrace();
+				}
 		}
 
 	}
@@ -1430,7 +1429,6 @@ public void beforeTest() throws Exception {
 	public void capturescreen(WebDriver driver, String screenShotName, String status) {
 		try {
 			
-
 			File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 
 			if (status.equals("FAILURE")) {

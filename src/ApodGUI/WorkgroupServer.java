@@ -29,6 +29,7 @@ import org.testng.annotations.Test;
 import testrail.Settings;
 import testrail.TestClass;
 import testrail.TestRail;
+import testrail.TestRailAPI;
 
 @Listeners(TestClass.class)
 public class WorkgroupServer {
@@ -37,17 +38,12 @@ public class WorkgroupServer {
 	static String HostName;
 	static String PortNo;
 	static String WGSPassword;
-	static String uname;
-	static String password;
 	String VerificationData;
 	String Screenshotpath;
 	static String NodeName;
 	static String Node_PortNumber;
 	static String Node_NewConnectionName;
 	static String WGSSearchInputData;
-	
-	
-	static String URL;
 
 	@BeforeTest
 	public void beforeTest() throws Exception {
@@ -63,16 +59,14 @@ public class WorkgroupServer {
 		Node_PortNumber = Settings.getNode_PortNumber();
 		Node_NewConnectionName = Settings.getNode_NewConnectionName();
 		WGSSearchInputData = Settings.getWGSSearchInputData();
-		URL = Settings.getSettingURL();
-		uname=Settings.getNav_Username();
-		password=Settings.getNav_Password();
 	}
 
 	@Test
 	@Parameters({ "sDriver", "sDriverpath" })
 	public void Login(String sDriver, String sDriverpath, ITestContext context) throws Exception {
 
-		
+		Settings.read();
+		String URL = Settings.getSettingURL();
 
 		// Select the required browser for running the script
 		if (sDriver.equalsIgnoreCase("webdriver.chrome.driver")) {
@@ -97,8 +91,8 @@ public class WorkgroupServer {
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
 		// Login
-		driver.findElement(By.id("username")).sendKeys(uname);
-		driver.findElement(By.id("password")).sendKeys(password);
+		driver.findElement(By.id("username")).sendKeys(Settings.getNav_Username());
+		driver.findElement(By.id("password")).sendKeys(Settings.getNav_Password());
 		driver.findElement(By.cssSelector("button.btn-submit")).click();
 		Thread.sleep(2000);
 
@@ -896,14 +890,35 @@ public class WorkgroupServer {
 			// To add it in the report
 			Reporter.log("<br/>");
 			Reporter.log(path);
+			
+			try {
+				//Update attachment to testrail server
+				int testCaseID=0;
+				//int status=(int) result.getTestContext().getAttribute("Status");
+				//String comment=(String) result.getTestContext().getAttribute("Comment");
+				  if (result.getMethod().getConstructorOrMethod().getMethod().isAnnotationPresent(TestRail.class))
+					{
+					TestRail testCase = result.getMethod().getConstructorOrMethod().getMethod().getAnnotation(TestRail.class);
+					// Get the TestCase ID for TestRail
+					testCaseID = testCase.testCaseId();
+					
+					
+					
+					TestRailAPI api=new TestRailAPI();
+					api.Getresults(testCaseID, result.getMethod().getMethodName());
+					
+					}
+				}catch (Exception e) {
+					// TODO: handle exception
+					//e.printStackTrace();
+				}
 		}
 
 	}
 
 	public void capturescreen(WebDriver driver, String screenShotName, String status) {
 		try {
-			TakesScreenshot takesScreenshot = (TakesScreenshot) driver;
-
+			
 			File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 
 			if (status.equals("FAILURE")) {

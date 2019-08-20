@@ -3,8 +3,7 @@
 <suite name="Navigator">
 	<test name="Test Node Viewlet">
 		<parameter name="sDriver" value="webdriver.chrome.driver" />
-		<parameter name="sDriverpath"
-			value="Drivers/chromedriver.exe" />
+		<parameter name="sDriverpath" value="Drivers/chromedriver.exe" />
 		<parameter name="URL" value="/navigator/#/login" />
 		<parameter name="uname" value="Admin" />
 		<parameter name="password" value="admin" />
@@ -12,8 +11,7 @@
 		<parameter name="TypeOfNode" value="MQM" />
 
 		<parameter name="Dashboardname" value="Favorite viewlet" />
-		<parameter name="FavoriteViewletName"
-			value="Add Node into Favorite" />
+		<parameter name="FavoriteViewletName" value="Add Node into Favorite" />
 		<parameter name="Favwgs" value="0" />
 		<parameter name="wgs" value="0" />
 		<parameter name="NodeViewletname" value="Node Viewlet" />
@@ -27,14 +25,13 @@
 
 		<parameter name="QueueManagerName" value="QMNode" />
 		<parameter name="DefaultTransmissionQueue" value="Add.Queue" />
-		<parameter name="Description"
-			value="Test Manager From options" />
+		<parameter name="Description" value="Test Manager From options" />
 
 		<parameter name="NodeName" value="Node-Test" />
 
 		<parameter name="IPAddress" value="127.0.0.1" />
 		<parameter name="HostName" value="Localhost" />
-		<parameter name="PortNo" value="4070" />
+		<parameter name="PortNo" value="4020" />
 		<parameter name="WGSPassword" value="admin" />
 
 		<classes>
@@ -42,7 +39,6 @@
 
 				<methods>
 					<include name="Login" />
-					<include name="AddToFavotiteViewlet" />
 					<include name="ShowObjectAttributesforNode" />
 					<include name="ShowTopology" />
 					<include name="NodeEvents" />
@@ -50,13 +46,11 @@
 					<include name="DiscoverNow" />
 					<include name="DeleteNode" />
 					<include name="PropertiesOfNode" />
-					<include name="AddToFavotiteViewlet" />
 					<include name="CompareTwoNodes" />
-					<include name="AddtoFavoriteForMultipleNodes" />
 					<include name="SearchFilter" />
 					<include name="CreateNodeUsingIcon" />
 				
-					<include name="CreateQueueManagerFromNodeViewletOptions" />
+				 	<include name="CreateQueueManagerFromNodeViewletOptions" /> 
 					<include name="Logout" />
 
 				</methods>

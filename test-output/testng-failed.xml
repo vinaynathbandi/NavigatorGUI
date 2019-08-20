@@ -55,13 +55,17 @@
     <classes>
       <class name="ApodGUI.Scheduling">
         <methods>
+          <include name="ProcessScheduling" invocation-numbers="0"/>
+          <include name="ListenerScheduling" invocation-numbers="0"/>
           <include name="beforeTest"/>
           <include name="TopicScheduling" invocation-numbers="0"/>
+          <include name="SubScriptionScheduling" invocation-numbers="0"/>
           <include name="RouteScheduling" invocation-numbers="0"/>
           <include name="tearDown"/>
           <include name="BridgeScheduling" invocation-numbers="0"/>
           <include name="ChannelScheduling" invocation-numbers="0"/>
           <include name="DurableScheduling" invocation-numbers="0"/>
+          <include name="QueuesScheduling" invocation-numbers="0"/>
         </methods>
       </class> <!-- ApodGUI.Scheduling -->
     </classes>
